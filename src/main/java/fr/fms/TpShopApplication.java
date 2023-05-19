@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.AlbumRepository;
 import fr.fms.dao.MusicalGenreRepository;
 import fr.fms.entities.Album;
@@ -13,17 +14,19 @@ import fr.fms.entities.MusicalGenre;
 @SpringBootApplication
 public class TpShopApplication implements CommandLineRunner{
 	@Autowired
-	private MusicalGenreRepository musicalGenreRepository;
+	private IBusinessImpl business;
 	@Autowired
-	private AlbumRepository albumRepository;
+	private MusicalGenreRepository musicalGenreRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(TpShopApplication.class, args);
 	}
 	@Override
 	public void run(String... args) throws Exception {
 		//createTable();
+		business.readAllAlbums().forEach(System.out::println);
 	}
-	public void createTable() {
+	/*public void createTable() {
 		MusicalGenre mathCore = musicalGenreRepository.save(new MusicalGenre("Math Core"));
 		MusicalGenre sludgeMetal = musicalGenreRepository.save(new MusicalGenre("Sludge/Stoner Metal"));
 		MusicalGenre trashMetal = musicalGenreRepository.save(new MusicalGenre("Trash Metal"));
@@ -45,5 +48,5 @@ public class TpShopApplication implements CommandLineRunner{
 		albumRepository.save(new Album("Nola", "Down", 1995, 13, sludgeMetal));
 		albumRepository.save(new Album("Roots", "Sepultura", 1996, 9.99, trashMetal));
 		albumRepository.save(new Album("Station", "Russian Circles", 2008, 19, postMetal));
-	}
+	}*/
 }
