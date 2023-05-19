@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"fr.fms.entities","l":"Album"},{"p":"fr.fms.dao","l":"AlbumRepository"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"fr.fms.entities","l":"MusicalGenre"},{"p":"fr.fms.dao","l":"MusicalGenreRepository"},{"p":"fr.fms","l":"TpShopApplication"}];updateSearchResults();
