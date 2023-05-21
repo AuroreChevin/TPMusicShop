@@ -17,7 +17,7 @@ public interface AlbumRepository extends JpaRepository<Album, Long>{
 	@Transactional
 	@Modifying
 	@Query("update Album a set a.albumName = ?2 , a.bandName = ?3, a.releaseYear = ?4, a.price = ?5 where a.id = ?1")
-	public boolean updateAlbumById(Long id, String albumName, String bandName, int releaseYear, double price);
+	public int updateAlbumById(Long id, String albumName, String bandName, int releaseYear, double price);
 	 
 	public List<Album> findByMusicGenreId(Long Id);
 }

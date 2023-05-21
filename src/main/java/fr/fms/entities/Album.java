@@ -29,6 +29,13 @@ public class Album implements Serializable{
 		this.price = price;
 		this.musicGenre = musicGenre;
 	}
+	
+	public Album(String albumName, String bandName, int releaseYear, double price) {
+		this.albumName = albumName;
+		this.bandName = bandName;
+		this.releaseYear = releaseYear;
+		this.price = price;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -66,6 +73,8 @@ public class Album implements Serializable{
 	public void setMusicalGenre(MusicGenre musicGenre) {
 		this.musicGenre = musicGenre;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return centerString(String.valueOf(id)) + centerString(albumName) + centerString(bandName) + 

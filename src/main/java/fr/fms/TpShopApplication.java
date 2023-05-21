@@ -30,13 +30,16 @@ public class TpShopApplication implements CommandLineRunner{
 	}
 	@Override
 	public void run(String... args) throws Exception {
-		//displayAlbums();
-		//displayMusicGenres();
-		//displayArticlesByMusicGenreId();
-		//business.createAlbum(new Album("Crack the sky", "Mastodon", 2009, 16, new MusicGenre("Sludge/Stoner Metal")));
-		Album album = business.readOneAlbum((long) 5);
-		System.out.println(album);
-		//displayAlbums();
+		// OK business.createTable();
+		//OK displayAlbums();
+		//OK displayMusicGenres();
+		//OK displayArticlesByMusicGenreId();
+		// OK addOneAlbum();
+		//OK displayOneAlbum();
+		//OK updateOneAlbum();
+		//OK removeAlbum();
+		// NOK removeMusicGenre((long) 1);
+		
 	}
 	
 	/**
@@ -88,6 +91,48 @@ public class TpShopApplication implements CommandLineRunner{
 		else System.out.println("ce genre musical n'existe pas !");
 	}
 	/**
+	 * Méthode pour savoir si mise jour album a fonctionné
+	 */
+	public void addOneAlbum() {
+		Album album = new Album("Crack the sky", "Mastodon", 2009, 16, new MusicGenre((long) 2));
+		if(business.createAlbum(album)==true) System.out.println("L'album a été ajouté au stock");
+		else System.out.println("L'ajout a échoué");
+	}
+	/**
+	 * Méthode pour savoir si mise jour album a fonctionné
+	 */
+	public void displayOneAlbum() {
+		Album album = business.readOneAlbum((long) 5);
+		System.out.println(album);
+	}
+	/**
+	 * Méthode pour savoir si mise jour album a fonctionné
+	 */
+	public void updateOneAlbum() {
+		Album album = business.readOneAlbum((long) 5);
+		album.setPrice(500);
+		if(business.updateAlbum(album)==true) {
+			System.out.println("L'album a été mis à jour");
+			System.out.println(album);
+		}
+		else System.out.println("La mise à jour a échoué");
+	}
+	/**
+	 * Méthode pour savoir si suppression album a fonctionné
+	 */
+	public void removeAlbum() {
+		if(business.deleteOneAlbum((long) 2)==true) System.out.println("L'album a été supprimé du stock");
+		else System.out.println("La suppression a échoué");
+	}
+	/**
+	 * Méthode pour savoir si suppression genre musical a fonctionné
+	 */
+	public void removeMusicGenre(Long id) {
+		if(business.deleteOneMusicGenre(id)==true) System.out.println("Le genre musical a été supprimé");
+		else System.out.println("La suppression a échoué");
+	}
+	
+	/**
 	 * Méthode pour les différents choix menu
 	 */
 	/*public void choice() {
@@ -103,12 +148,6 @@ public class TpShopApplication implements CommandLineRunner{
 				case 3 : displayMusicGenres();
 					break;					
 				case 4 : displayArticlesByMusicGenreId();
-					break;						
-				case 5 : displayCategories();
-					break;
-				case 6 : displayArticlesByCategoryId();
-					break;
-				case 7 : connection();
 					break;
 				case 8 : System.out.println("à bientôt dans notre boutique :)");
 					break;					

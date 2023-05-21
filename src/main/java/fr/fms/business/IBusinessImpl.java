@@ -53,11 +53,7 @@ public class IBusinessImpl implements IBusiness{
 	public List<Album> readAlbumsByMusicGenreId(Long id) {
 		return albumRepository.findByMusicGenreId(id);
 	}
-	@Override
-	public MusicGenre readOneMusicGenre(Long id) {
-		MusicGenre musicGenre = musicGenreRepository.findById(id).get();
-		return musicGenre;
-	}
+	
 	@Override
 	public boolean createAlbum(Album album) {
 		albumRepository.save(album);
@@ -84,6 +80,11 @@ public class IBusinessImpl implements IBusiness{
 		return true;
 	}
 	@Override
+	public MusicGenre readOneMusicGenre(Long id) {
+		MusicGenre musicGenre = musicGenreRepository.findById(id).get();
+		return musicGenre;
+	}
+	@Override
 	public boolean updateMusicGenre(MusicGenre musicGenre) {
 		// TODO Auto-generated method stub
 		return false;
@@ -91,7 +92,7 @@ public class IBusinessImpl implements IBusiness{
 	@Override
 	public boolean deleteOneMusicGenre(Long id) {
 		musicGenreRepository.deleteById(id);
-		return false;
+		return true;
 	}
 	
 	

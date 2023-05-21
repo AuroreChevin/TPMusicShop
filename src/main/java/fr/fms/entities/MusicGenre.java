@@ -19,9 +19,20 @@ public class MusicGenre {
 	public static final int MAX_STRING_LENGTH = 30;
 	public MusicGenre() {
 	}
+	
+	public MusicGenre(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	public MusicGenre(String name) {
 		this.name = name;
 	}
+	
+	public MusicGenre(Long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}
