@@ -10,15 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class MusicalGenre {
+public class MusicGenre {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	@OneToMany(mappedBy = "musicalGenre")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "musicGenre")
 	private Collection<Album> albums;
-	public MusicalGenre() {
+	public static final int MAX_STRING_LENGTH = 30;
+	public MusicGenre() {
 	}
-	public MusicalGenre(String name) {
+	public MusicGenre(String name) {
 		this.name = name;
 	}
 	public Long getId() {
@@ -41,7 +42,13 @@ public class MusicalGenre {
 	}
 	@Override
 	public String toString() {
-		return "MusicalGenre [id=" + id + ", name=" + name + ", albums=" + albums + "]";
+		return centerString(String.valueOf(id)) + centerString(name);
 	}
-	
+	public static String centerString(String str) {
+		if(str.length() >= MAX_STRING_LENGTH) return str;
+		String dest = "                              ";
+		int deb = (MAX_STRING_LENGTH - str.length())/2 ;
+		String data = new StringBuilder(dest).replace( deb, deb + str.length(), str ).toString();
+		return data;
+	}
 }

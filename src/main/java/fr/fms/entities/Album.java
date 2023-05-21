@@ -18,15 +18,16 @@ public class Album implements Serializable{
 	private int releaseYear;
 	private double price;
 	@ManyToOne
-	private MusicalGenre musicalGenre;
+	private MusicGenre musicGenre;
+	public static final int MAX_STRING_LENGTH = 30;
 	public Album() {
 	}
-	public Album(String albumName, String bandName, int releaseYear, double price, MusicalGenre musicalGenre) {
+	public Album(String albumName, String bandName, int releaseYear, double price, MusicGenre musicGenre) {
 		this.albumName = albumName;
 		this.bandName = bandName;
 		this.releaseYear = releaseYear;
 		this.price = price;
-		this.musicalGenre = musicalGenre;
+		this.musicGenre = musicGenre;
 	}
 	public Long getId() {
 		return id;
@@ -59,16 +60,23 @@ public class Album implements Serializable{
 		this.price = price;
 	}
 	
-	public MusicalGenre getMusicalGenre() {
-		return musicalGenre;
+	public MusicGenre getMusicalGenre() {
+		return musicGenre;
 	}
-	public void setMusicalGenre(MusicalGenre musicalGenre) {
-		this.musicalGenre = musicalGenre;
+	public void setMusicalGenre(MusicGenre musicGenre) {
+		this.musicGenre = musicGenre;
 	}
 	@Override
 	public String toString() {
-		return "Album [id=" + id + ", albumName=" + albumName + ", bandName=" + bandName + ", releaseYear="
-				+ releaseYear + ", price=" + price + ", price="+ musicalGenre.getName() +"]";
+		return centerString(String.valueOf(id)) + centerString(albumName) + centerString(bandName) + 
+				centerString(String.valueOf(releaseYear)) +centerString(String.valueOf(price)) + 
+				centerString(musicGenre.getName());
 	}
-	
+	public static String centerString(String str) {
+		if(str.length() >= MAX_STRING_LENGTH) return str;
+		String dest = "                              ";
+		int deb = (MAX_STRING_LENGTH - str.length())/2 ;
+		String data = new StringBuilder(dest).replace( deb, deb + str.length(), str ).toString();
+		return data;
+	}
 }
